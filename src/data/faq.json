@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "question": "What are your hours?",
+      "answer": "Monday: 9:00 AM - 5:00 PM. Tuesday: 9:00 AM - 5:00 PM. Wednesday: 9:00 AM - 5:00 PM. Thursday: 9:00 AM - 5:00 PM. Friday: 9:00 AM - 5:00 PM. Saturday: Closed. Sunday: Closed.",
+      "source": "hours.json"
+    },
+    {
+      "question": "Where are you located?",
+      "answer": "8829 Davis Road STE 3, Stockton, CA, 95209",
+      "source": "location.json"
+    },
+    {
+      "question": "What's your phone number?",
+      "answer": "You can reach us at 209-954-9896.",
+      "source": "contact.json"
+    }
+  ]
+}

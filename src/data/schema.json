@@ -1,0 +1,28 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Pacific Window Tint",
+  "telephone": "209-954-9896",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "8829 Davis Road STE 3",
+    "addressLocality": "Stockton",
+    "addressRegion": "CA",
+    "postalCode": "95209",
+    "addressCountry": "US"
+  },
+  "sameAs": [],
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".hero-tagline",
+      ".hero-subtitle",
+      ".about-text"
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3"
+  }
+}
