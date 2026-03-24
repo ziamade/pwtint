@@ -1,6 +1,60 @@
 {
   "client.name": {
     "value": "Pacific Window Tint",
-    "source": "fixture"
+    "source": "fixture + old-site-scrape"
+  },
+  "client.foundingYear": {
+    "value": "2007",
+    "source": "fixture + old-site-meta"
+  },
+  "client.license": {
+    "value": "896816",
+    "source": "old-site-scrape (trust section)"
+  },
+  "contact.email": {
+    "value": "pacificwindowtint@gmail.com",
+    "source": "old-site-schema-ld+json"
+  },
+  "contact.phone": {
+    "value": "209-954-9896",
+    "source": "fixture + old-site-scrape"
+  },
+  "location.address": {
+    "value": "8829 Davis Road STE 3, Stockton, CA 95209",
+    "source": "fixture + old-site-scrape"
+  },
+  "location.geo": {
+    "value": "37.9577, -121.2908",
+    "source": "old-site-meta geo.position"
+  },
+  "brand.fonts": {
+    "value": "Dancing Script, Montserrat, DM Sans",
+    "source": "old-site Google Fonts link tags"
+  },
+  "brand.colors": {
+    "value": "#00D9FF, #0A1628, #1A2F4F, #FF6B35",
+    "source": "old-site CSS + fixture seedColors"
+  },
+  "services": {
+    "value": "6 services (auto, residential, commercial, mobile, specialty, removal)",
+    "source": "fixture gathered.json services array"
+  },
+  "reviews.rating": {
+    "value": "4.5+",
+    "source": "old-site trust section (4.5+ Star Rating badge)"
+  },
+  "reviews.count": {
+    "value": "100+",
+    "source": "old-site schema aggregateRating ratingCount"
+  },
+  "hero.copy": {
+    "source": "copy-expert, grounded in gathered facts"
+  },
+  "about.copy": {
+    "source": "copy-expert, grounded in gathered facts + review mentions of Dana"
+  },
+  "photos": {
+    "value": "13 photos from fixture, 5 before/after pairs",
+    "source": "fixture photos directory"
   }
 }

@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "title": "Full Automotive Tint",
+      "description": "Complete window tinting on a sedan",
+      "before": "/assets/images/img_autobf.png",
+      "after": "/assets/images/img_autotint.JPEG",
+      "service": "Automotive Tinting"
+    },
+    {
+      "title": "Residential Window Film",
+      "description": "Home window tinting for heat and UV reduction",
+      "before": "/assets/images/img_housebf.JPEG",
+      "after": "/assets/images/img_houseting.JPG",
+      "service": "Residential Tinting"
+    },
+    {
+      "title": "Commercial Storefront",
+      "description": "Window film installation on a commercial building",
+      "before": "/assets/images/img_commercialbf.JPEG",
+      "after": "/assets/images/img_commercialtint.JPEG",
+      "service": "Commercial Tinting"
+    },
+    {
+      "title": "Specialty Vehicle Tint",
+      "description": "Custom tint on a specialty vehicle",
+      "before": "/assets/images/img_specialtybf.JPEG",
+      "after": "/assets/images/img_specialtytint.JPEG",
+      "service": "Specialty Vehicles"
+    },
+    {
+      "title": "Tint Removal and Re-tint",
+      "description": "Old tint removed and replaced with fresh film",
+      "before": "/assets/images/img_removalbf.JPEG",
+      "after": "/assets/images/img_removaltint.JPEG",
+      "service": "Tint Removal"
+    }
+  ],
+  "source": "media-curator"
+}

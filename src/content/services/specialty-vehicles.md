@@ -1,7 +1,8 @@
 ---
 title: "Specialty Vehicles"
-description: "Expert tinting for RVs, tractors, boats, and specialty vehicles. Custom solutions for unique window configurations."
+description: "RVs, tractors, boats, and anything with windows. Custom solutions for non-standard shapes and sizes."
 beforeImage: "/assets/images/img_specialtybf.JPEG"
+afterImage: "/assets/images/img_specialtytint.JPEG"
 fallbackImage: ""
 order: 5
 ---

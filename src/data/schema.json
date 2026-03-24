@@ -3,6 +3,9 @@
   "@type": "AutoRepair",
   "name": "Pacific Window Tint",
   "telephone": "209-954-9896",
+  "email": "pacificwindowtint@gmail.com",
+  "url": "https://pwtint.net",
+  "image": "/assets/images/hero_banner.png",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "8829 Davis Road STE 3",
@@ -10,6 +13,99 @@
     "addressRegion": "CA",
     "postalCode": "95209",
     "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 37.9577,
+    "longitude": -121.2908
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Monday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "foundingDate": "2007",
+  "areaServed": "Stockton, CA and surrounding areas",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Window Tinting Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Automotive Window Tinting"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Residential Window Tinting"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Commercial Window Tinting"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Mobile Tinting Service"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Specialty Vehicle Tinting"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Window Tint Removal"
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "100",
+    "bestRating": "5"
   },
   "sameAs": [],
   "speakable": {
@@ -20,9 +116,5 @@
       ".about-text"
     ]
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": "3"
-  }
+  "source": "seo-schema"
 }

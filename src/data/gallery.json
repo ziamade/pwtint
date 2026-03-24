@@ -1,3 +1,9 @@
 {
-  "images": []
+  "images": [
+    {
+      "url": "/assets/images/img_trailer.JPG",
+      "alt": "Pacific Window Tint mobile service trailer set up on location"
+    }
+  ],
+  "source": "media-curator"
 }

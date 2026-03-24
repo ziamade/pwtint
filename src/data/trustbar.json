@@ -1,16 +1,21 @@
 {
   "items": [
     {
-      "number": "5.0/5",
-      "label": "Rating"
+      "number": "4.5+",
+      "label": "Star Rating"
     },
     {
-      "number": "19+",
-      "label": "Years Experience"
+      "number": "Est. 2007",
+      "label": "Family Owned"
     },
     {
-      "number": "6",
-      "label": "Services"
+      "number": "License #896816",
+      "label": "Licensed & Insured"
+    },
+    {
+      "number": "Lifetime",
+      "label": "Warranty"
     }
-  ]
+  ],
+  "source": "copy-expert"
 }

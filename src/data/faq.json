@@ -1,19 +1,30 @@
 {
   "items": [
     {
-      "question": "What are your hours?",
-      "answer": "Monday: 9:00 AM - 5:00 PM. Tuesday: 9:00 AM - 5:00 PM. Wednesday: 9:00 AM - 5:00 PM. Thursday: 9:00 AM - 5:00 PM. Friday: 9:00 AM - 5:00 PM. Saturday: Closed. Sunday: Closed.",
-      "source": "hours.json"
+      "question": "Do you offer a warranty on your tinting?",
+      "answer": "Yes. Every window tint installation at Pacific Window Tint comes with a lifetime warranty. If you ever have an issue with bubbling, peeling, or fading, bring it back and we will take care of it.",
+      "source": "old-site-faq"
     },
     {
-      "question": "Where are you located?",
-      "answer": "8829 Davis Road STE 3, Stockton, CA, 95209",
-      "source": "location.json"
+      "question": "What types of vehicles can you tint?",
+      "answer": "We tint cars, trucks, SUVs, RVs, boats, tractors, and other specialty vehicles. If it has windows, we can tint it. We also offer mobile service for fleets and dealerships.",
+      "source": "gathered-services"
     },
     {
-      "question": "What's your phone number?",
-      "answer": "You can reach us at 209-954-9896.",
-      "source": "contact.json"
+      "question": "Do you do residential and commercial tinting too?",
+      "answer": "Absolutely. We install window film on homes and commercial buildings for UV protection, heat reduction, glare control, and privacy. Same quality film and same lifetime warranty.",
+      "source": "gathered-services"
+    },
+    {
+      "question": "What are your hours and where are you located?",
+      "answer": "We are open Monday through Friday, 9 AM to 5 PM, at 8829 Davis Road Suite 3 in Stockton. Call 209-954-9896 to schedule an appointment.",
+      "source": "hours-and-location"
+    },
+    {
+      "question": "How long does a tint job take?",
+      "answer": "Most cars are done in under an hour. One of our customers clocked Dana at 37 minutes start to finish. Drop it off in the morning and pick it up the same day.",
+      "source": "review-AnG"
     }
-  ]
+  ],
+  "source": "copy-expert"
 }

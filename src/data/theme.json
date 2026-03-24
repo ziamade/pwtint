@@ -1,5 +1,18 @@
 {
-  "heroVariant": 3,
-  "accentStyle": "underline",
-  "faviconShape": "circle"
+  "sectionOrder": [
+    "hero",
+    "trust",
+    "services",
+    "projects",
+    "reviews",
+    "faq",
+    "hours",
+    "about",
+    "contact"
+  ],
+  "heroVariant": 2,
+  "accentStyle": "tint",
+  "faviconShape": "squircle",
+  "industry": "Auto",
+  "defaultMode": "dark"
 }

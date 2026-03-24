@@ -1,7 +1,8 @@
 ---
 title: "Residential Tinting"
-description: "Energy-efficient home window tinting. Reduce cooling costs, block harmful UV rays, and increase privacy while maintaining your view."
+description: "Home window film that cuts cooling costs and blocks UV rays. Keep your view, lose the heat and glare."
 beforeImage: "/assets/images/img_housebf.JPEG"
+afterImage: "/assets/images/img_houseting.JPG"
 fallbackImage: ""
 order: 2
 ---

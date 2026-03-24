@@ -1,16 +1,24 @@
 {
-  "primary": "#00D9FF",
-  "primaryLight": "#00D9FFaa",
-  "secondary": "#1A2F4F",
-  "secondaryLight": "#1A2F4F80",
-  "accent": "#FF6B35",
-  "headerColor": "#F8F9FA",
-  "bodyTextColor": "#F8F9FA",
-  "bodyTextColorWhite": "#F8F9FA",
-  "offWhite": "#0A1628",
-  "cream": "#0A1628",
-  "dark": "#0A1628",
-  "medium": "#1A2F4F",
-  "accentDark": "#FF6B35",
-  "silver": "#888888"
+  "light": {
+    "primary": "#0A6E8A",
+    "background": "#F0F2F4",
+    "surface": "#E4E8EC",
+    "text": "#1A1A1A",
+    "textMuted": "#5C5C5C",
+    "accent": "#E8602C",
+    "border": "#D0D4D8"
+  },
+  "dark": {
+    "primary": "#00D9FF",
+    "background": "#0A1628",
+    "surface": "#142240",
+    "text": "#E8E8E8",
+    "textMuted": "#9EAAB8",
+    "accent": "#FF6B35",
+    "border": "#1E3454"
+  },
+  "nameFont": "Dancing Script",
+  "headingFont": "Montserrat",
+  "bodyFont": "DM Sans",
+  "source": "brand-architect"
 }
