@@ -1,0 +1,317 @@
+---
+import site from '../data/site.json';
+import hours from '../data/hours.json';
+---
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge" id="open-badge">
+        <span class="badge-text">Loading hours...</span>
+      </div>
+      <script id="hours-data" type="application/json" set:html={JSON.stringify(hours)} />
+
+      <h1 class="hero-title">
+        <span class="hero-pacific">Pacific</span>
+        <span class="hero-wt">WINDOW TINT</span>
+      </h1>
+
+      <p class="hero-tagline">Keep the heat out. Keep the look in. Premium auto, home, and commercial tinting done right the first time.</p>
+
+      <div class="hero-location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <a href={site.mapUrl} target="_blank" rel="noopener">{site.address.city}, {site.address.state}</a>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#quote-form" class="btn-primary">Get Free Quote</a>
+        <a href={`tel:${site.phoneTel}`} class="btn-secondary">{site.phone}</a>
+      </div>
+    </div>
+
+    <div class="hero-video">
+      <video autoplay muted loop playsinline poster="/images/img_autotint.JPEG">
+        <source src="/videos/vid_tint.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- Trust bar as its own section -->
+<section class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <span class="trust-value">Since {site.founded}</span>
+      <span class="trust-label">Family Owned</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-value">4.5+</span>
+      <span class="trust-label">Star Rating</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-value">99%</span>
+      <span class="trust-label">UV Protection</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-value">CA {site.license}</span>
+      <span class="trust-label">Licensed & Insured</span>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const badge = document.getElementById('open-badge');
+  const dataEl = document.getElementById('hours-data');
+  if (!badge || !dataEl) return;
+  try {
+    const hours = JSON.parse(dataEl.textContent);
+    const days = hours.days || [];
+    const badgeText = badge.querySelector('.badge-text');
+    if (!badgeText) return;
+    const now = new Date();
+    const dayName = now.toLocaleDateString('en-US', { weekday: 'long' });
+    const today = days.find(d => d.day === dayName);
+    if (!today || !today.open || today.open.toLowerCase() === 'closed') {
+      badge.classList.add('closed');
+      const todayIdx = days.findIndex(d => d.day === dayName);
+      const next = days.find((d, i) => i > todayIdx && d.open && d.open.toLowerCase() !== 'closed') || days.find(d => d.open && d.open.toLowerCase() !== 'closed');
+      badgeText.textContent = next ? 'Closed \u00B7 Opens ' + next.day + ' ' + next.open : 'Hours unavailable';
+      return;
+    }
+    function parseTime(str) { const m = (str || '').match(/(\d+):(\d+)\s*(AM|PM)/i); if (!m) return null; let h = parseInt(m[1]); if (m[3].toUpperCase() === 'PM' && h !== 12) h += 12; if (m[3].toUpperCase() === 'AM' && h === 12) h = 0; return h * 60 + parseInt(m[2]); }
+    const openMin = parseTime(today.open); const closeMin = parseTime(today.close); const nowMin = now.getHours() * 60 + now.getMinutes();
+    if (openMin !== null && closeMin !== null && nowMin >= openMin && nowMin < closeMin) { badge.classList.add('open'); badgeText.textContent = 'Open \u00B7 Closes ' + today.close; }
+    else { badge.classList.add('closed'); badgeText.textContent = nowMin < (openMin || 0) ? 'Closed \u00B7 Opens ' + today.open : 'Closed \u00B7 Opens tomorrow'; }
+  } catch (e) { const badgeText = badge.querySelector('.badge-text'); if (badgeText) badgeText.textContent = ''; }
+});
+</script>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+    align-items: center;
+    min-height: 85vh;
+    padding: 4rem 2rem;
+  }
+
+  .hero-content {
+    z-index: 1;
+  }
+
+  .hero-video {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    aspect-ratio: 4/3;
+  }
+
+  .hero-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-badge.open {
+    background: rgba(22, 163, 74, 0.2);
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.3);
+  }
+
+  .hero-badge.open::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .hero-badge.closed {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    margin-bottom: 1.25rem;
+    line-height: 1;
+  }
+
+  .hero-pacific {
+    display: block;
+    font-family: var(--font-script);
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--electric);
+    line-height: 1.1;
+  }
+
+  .hero-wt {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2rem;
+  }
+
+  .hero-location a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .hero-location a:hover {
+    color: var(--electric);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+  }
+
+  /* Trust bar */
+  .trust-bar {
+    background: var(--navy-light);
+    border-top: 1px solid var(--white-10);
+    border-bottom: 1px solid var(--white-10);
+    padding: 1.25rem 2rem;
+  }
+
+  .trust-bar-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .trust-item {
+    text-align: center;
+  }
+
+  .trust-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--electric);
+    line-height: 1.2;
+  }
+
+  .trust-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-top: 0.2rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero-video {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .hero-ctas {
+      justify-content: center;
+    }
+
+    .hero-location {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-pacific {
+      font-size: 3.5rem;
+    }
+
+    .hero-wt {
+      font-size: 2rem;
+      letter-spacing: 4px;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .trust-bar-inner {
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-value {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-pacific {
+      font-size: 2.8rem;
+    }
+
+    .hero-wt {
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+    }
+  }
+</style>

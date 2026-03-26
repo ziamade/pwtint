@@ -1,0 +1,141 @@
+---
+const faqs = [
+  {
+    question: "What types of window tint do you offer?",
+    answer: "We carry a full range of professional-grade films including dyed, metallic, carbon, and ceramic tint. Each type offers different levels of heat rejection, UV protection, and appearance. We'll help you choose the right film for your needs and budget."
+  },
+  {
+    question: "How long does window tinting take?",
+    answer: "Most automotive installations take 1 to 2 hours depending on the number of windows and vehicle type. Residential and commercial jobs vary based on the number and size of windows. We'll give you a time estimate when you schedule."
+  },
+  {
+    question: "Do you offer a warranty?",
+    answer: "We offer a lifetime warranty on select premium installations. Standard installations come with a manufacturer's warranty. The warranty covers bubbling, peeling, cracking, and discoloration. Ask us about warranty options for your specific film choice."
+  },
+  {
+    question: "Can you remove old window tint?",
+    answer: "Yes. We use a professional heat and steam method to remove old, damaged, or bubbling tint cleanly without damaging your glass or defroster lines. We can remove old tint and install new film in the same visit."
+  },
+  {
+    question: "Do you offer mobile tinting service?",
+    answer: "Yes. We provide on-site tinting for fleet vehicles, dealerships, and customers who need the work done at their location. Contact us for mobile service availability and scheduling."
+  },
+  {
+    question: "What areas do you serve?",
+    answer: "We're based in Stockton, CA and serve the entire San Joaquin County area including Lodi, Manteca, Tracy, Modesto, and surrounding communities."
+  },
+  {
+    question: "How do I care for newly tinted windows?",
+    answer: "After installation, keep windows rolled up for 3 to 5 days to allow the film to cure. You may notice small water pockets during curing, which is normal. After curing, clean with a soft cloth and ammonia-free cleaner."
+  }
+];
+---
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      {faqs.map((faq) => (
+        <details class="faq-item">
+          <summary class="faq-question">{faq.question}</summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: var(--section-padding);
+    background: var(--navy-light);
+    position: relative;
+  }
+
+  .faq-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--white-10), transparent);
+  }
+
+  .faq-section .container {
+    max-width: 800px;
+  }
+
+  .faq-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-item {
+    background: var(--white-05);
+    border: 1px solid var(--white-10);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color var(--transition);
+  }
+
+  .faq-item[open] {
+    border-color: var(--electric);
+  }
+
+  .faq-question {
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--electric);
+    font-weight: 300;
+    flex-shrink: 0;
+    margin-left: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.95rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .faq-section {
+      padding: 3rem 1rem;
+    }
+
+    .faq-question {
+      font-size: 0.95rem;
+      padding: 1rem 1.25rem;
+    }
+  }
+</style>

@@ -1,0 +1,176 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${site.name} - Expert Tinting in Stockton & Surrounding Areas Since ${site.founded}`,
+  description = `${site.name} - Professional automotive, residential, and commercial window tinting in ${site.address.city}, ${site.address.state} since ${site.founded}. Licensed, insured, lifetime warranty. Expert installation, UV protection, heat reduction.`
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta -->
+  <meta name="description" content={description} />
+  <meta name="keywords" content="window tinting, Stockton CA, automotive tint, residential tinting, commercial tinting, car window tint, home window tinting, UV protection, heat reduction, Pacific Window Tint" />
+  <meta name="author" content={site.name} />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Geo Tags -->
+  <meta name="geo.region" content="US-CA" />
+  <meta name="geo.placename" content={site.address.city} />
+  <meta name="geo.position" content={`${site.geo.lat};${site.geo.lng}`} />
+  <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={`${site.name} - Expert Tinting in ${site.address.city} & Surrounding Areas`} />
+  <meta property="og:description" content={`Professional window tinting services since ${site.founded}. Automotive, residential, and commercial tinting. Licensed & insured with lifetime warranty.`} />
+  <meta property="og:url" content="https://pacificwindowtint.com" />
+  <meta property="og:image" content="https://pacificwindowtint.com/images/pwt_logo.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content={site.name} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${site.name} - Expert Tinting in ${site.address.city}, ${site.address.state}`} />
+  <meta name="twitter:description" content={`Professional window tinting services since ${site.founded}. Automotive, residential, and commercial tinting. Licensed & insured with lifetime warranty.`} />
+  <meta name="twitter:image" content="https://pacificwindowtint.com/images/pwt_logo.png" />
+
+  <link rel="canonical" href="https://pacificwindowtint.com" />
+  <title>{title}</title>
+  <link rel="icon" type="image/png" href="/images/pwt_logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://pacificwindowtint.com",
+    "name": site.name,
+    "image": "https://pacificwindowtint.com/images/pwt_logo.png",
+    "description": `Professional automotive, residential, and commercial window tinting services in ${site.address.city}, ${site.address.state}. Family owned since ${site.founded} with lifetime warranty.`,
+    "url": "https://pacificwindowtint.com",
+    "telephone": `+1-${site.phoneTel}`,
+    "email": site.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": site.address.street,
+      "addressLocality": site.address.city,
+      "addressRegion": site.address.state,
+      "postalCode": site.address.zip,
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": site.geo.lat,
+      "longitude": site.geo.lng
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "priceRange": "$$",
+    "foundingDate": site.founded,
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "ratingCount": "28",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  })} />
+
+  <!-- Structured Data: FAQ -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of window tinting services do you offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer automotive window tinting for cars, trucks, and SUVs, residential window tinting for homes, commercial window tinting for offices and storefronts, specialty vehicle tinting for RVs, boats, and tractors, professional tint removal, and mobile on-site installation services."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long has Pacific Window Tint been in business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `${site.name} has been serving ${site.address.city}, ${site.address.state} and surrounding areas since ${site.founded}. We are a family-owned business with professional experience in window tinting.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer a warranty on window tinting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer a lifetime warranty on select premium film installations. Standard installations come with a manufacturer's warranty. We are also licensed and insured for your peace of mind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is Pacific Window Tint located?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `We are located at ${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}. We serve ${site.address.city} and all surrounding communities in the Central Valley.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does window tinting take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most automotive installations take 1 to 2 hours depending on the vehicle. Residential and commercial jobs vary based on the number and size of windows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you remove old window tint?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We use a professional heat and steam method to remove old, damaged, or bubbling tint cleanly without damaging your glass or defroster lines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer mobile tinting service?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We provide on-site tinting for fleet vehicles, dealerships, and customers who need work done at their location."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `We're based in ${site.address.city}, ${site.address.state} and serve the entire San Joaquin County area including Lodi, Manteca, Tracy, Modesto, and surrounding communities.`
+        }
+      }
+    ]
+  })} />
+</head>
+<body>
+  <slot />
+</body>
+</html>

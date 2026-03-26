@@ -1,0 +1,200 @@
+---
+import site from '../data/site.json';
+---
+
+<header class="site-header">
+  <nav>
+    <div class="logo">
+      <img src="/images/pwt_logo.png" alt="Pacific Window Tint Logo" class="header-logo-img" width="45" height="45" />
+      <div class="logo-text-styled">
+        <span class="logo-pacific-styled">Pacific</span>
+        <span class="logo-wt-styled">WINDOW TINT</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-social-links">
+        <a href={site.social.facebook} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <img src="/images/Facebook_Logo_Primary.png" alt="Facebook" width="24" height="24" />
+        </a>
+        <a href={site.social.yelp} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Yelp">
+          <img src="/images/yelp_favicon.png" alt="Yelp" width="24" height="24" />
+        </a>
+        <a href={site.social.instagram} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <img src="/images/Instagram_Glyph_Gradient.png" alt="Instagram" width="24" height="24" />
+        </a>
+      </div>
+      <a href={`tel:${site.phoneTel}`} class="cta-header">Call Now</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Toggle menu" id="mobileMenuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--navy-95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--white-10);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0.75rem 2rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-logo-img {
+    height: 45px;
+    width: auto;
+    display: block;
+  }
+
+  .logo-text-styled {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-pacific-styled {
+    font-family: var(--font-script);
+    color: var(--electric);
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .logo-wt-styled {
+    font-family: var(--font-heading);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .header-social-links {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--white-10);
+    transition: background var(--transition), transform var(--transition);
+  }
+
+  .social-link:hover {
+    background: var(--white-30);
+    transform: scale(1.1);
+  }
+
+  .social-link img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+
+  .cta-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--orange);
+    color: var(--white);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  }
+
+  .cta-header:hover {
+    background: rgb(255, 125, 80);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 0.75rem 1rem;
+    }
+
+    .logo-text-styled {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .logo-pacific-styled {
+      font-size: 1.4rem;
+    }
+
+    .logo-wt-styled {
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+    }
+
+    .header-social-links {
+      display: none;
+    }
+
+    .cta-header {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-logo-img {
+      height: 35px;
+    }
+  }
+</style>

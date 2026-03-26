@@ -1,0 +1,31 @@
+{
+  "name": "Pacific Window Tint",
+  "tagline": "Premium Window Tinting",
+  "subtitle": "Expert automotive, residential, and commercial window tinting services since 2007. Professional installation, lifetime warranty, and unmatched customer satisfaction.",
+  "phone": "(209) 954-9896",
+  "phoneTel": "209-954-9896",
+  "email": "pacificwindowtint@gmail.com",
+  "address": {
+    "street": "8829 Davis Road STE 3",
+    "city": "Stockton",
+    "state": "CA",
+    "zip": "95209"
+  },
+  "hours": {
+    "weekday": "Mon-Sat: 9:00 AM - 6:00 PM",
+    "weekend": "Sunday: Closed",
+    "short": "Mon-Sat: 9AM-6PM | Sun: Closed"
+  },
+  "license": "#896816",
+  "founded": "2007",
+  "social": {
+    "facebook": "https://www.facebook.com/pacificwindowtint",
+    "yelp": "https://www.yelp.com/biz/pacific-window-tint-stockton",
+    "instagram": "https://www.instagram.com/explore/locations/399840672/pacific-window-tint/"
+  },
+  "mapUrl": "https://www.google.com/maps/search/?api=1&query=8829+Davis+Road+STE+3+Stockton+CA+95209",
+  "geo": {
+    "lat": "37.9577",
+    "lng": "-121.2908"
+  }
+}

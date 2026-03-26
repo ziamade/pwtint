@@ -1,0 +1,151 @@
+---
+---
+
+<section id="quote-form" class="quote-form-section">
+  <div class="container">
+    <h2 class="section-title">Get Your Free Quote</h2>
+    <p class="section-subtitle">Fill out the form below and we'll be in touch</p>
+    <form action="/api/quote" method="POST" class="quote-form" id="quoteForm">
+      <div class="form-group">
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required placeholder="Your Name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required placeholder="your.email@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" />
+      </div>
+      <div class="form-group full-width">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" required placeholder="Tell us about your project..." rows="5"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Submit Quote Request</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('quoteForm') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    // Simulate submission (replace with real endpoint)
+    setTimeout(() => {
+      btn.textContent = 'Quote Request Sent!';
+      btn.style.background = '#22c55e';
+      form.reset();
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }, 1000);
+  });
+</script>
+
+<style>
+  .quote-form-section {
+    padding: var(--section-padding);
+    background: var(--navy-light);
+    position: relative;
+  }
+
+  .quote-form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--white-10), transparent);
+  }
+
+  .quote-form-section .container {
+    max-width: 700px;
+    text-align: center;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--gray);
+    margin-top: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .quote-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    text-align: left;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .quote-form label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+
+  .quote-form input,
+  .quote-form textarea {
+    background: var(--white-05);
+    border: 1px solid var(--white-10);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+  }
+
+  .quote-form input::placeholder,
+  .quote-form textarea::placeholder {
+    color: var(--gray-dark);
+  }
+
+  .quote-form input:focus,
+  .quote-form textarea:focus {
+    border-color: var(--electric);
+    box-shadow: 0 0 0 3px var(--electric-10);
+  }
+
+  .quote-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .quote-form .btn-primary {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .quote-form-section {
+      padding: 3rem 1rem;
+    }
+
+    .quote-form {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

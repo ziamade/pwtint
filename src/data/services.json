@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Automotive Tinting",
+    "description": "High-performance window tint for cars, trucks, and SUVs. UV protection, heat reduction, and enhanced privacy with California-legal options.",
+    "image": "/images/img_autobf.png",
+    "alt": "Automotive Tinting"
+  },
+  {
+    "title": "Residential Tinting",
+    "description": "Energy-efficient home window tinting. Reduce cooling costs, block harmful UV rays, and increase privacy while maintaining your view.",
+    "image": "/images/img_housebf.JPEG",
+    "alt": "Residential Tinting"
+  },
+  {
+    "title": "Commercial Tinting",
+    "description": "Professional-grade solutions for offices and storefronts. Improve energy efficiency, employee comfort, and building aesthetics.",
+    "image": "/images/img_commercialbf.JPEG",
+    "alt": "Commercial Tinting"
+  },
+  {
+    "title": "Mobile Service",
+    "description": "Convenient on-site installation for fleets, dealerships, and commercial clients. We bring professional service to your location.",
+    "image": "/images/img_trailer.JPG",
+    "alt": "Mobile Service"
+  },
+  {
+    "title": "Specialty Vehicles",
+    "description": "Expert tinting for RVs, tractors, boats, and specialty vehicles. Custom solutions for unique window configurations.",
+    "image": "/images/img_specialtybf.JPEG",
+    "alt": "Specialty Vehicles"
+  },
+  {
+    "title": "Tint Removal",
+    "description": "Professional removal of old or damaged window tint. Clean, careful service that protects your windows and prepares them for new tinting.",
+    "image": "/images/img_removalbf.JPEG",
+    "alt": "Tint Removal Service"
+  }
+]

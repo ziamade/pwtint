@@ -1,0 +1,214 @@
+---
+import site from '../data/site.json';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="footer-logo-styled">
+          <span class="logo-pacific-styled">Pacific</span>
+          <span class="logo-wt-styled">WINDOW TINT</span>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-grid">
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">&#x1F4DE;</div>
+            <div>
+              <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">&#x2709;&#xFE0F;</div>
+            <div>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">&#x1F4CD;</div>
+            <div>
+              <a href={site.mapUrl} target="_blank" rel="noopener noreferrer">
+                {site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}
+              </a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">&#x1F552;</div>
+            <div>
+              {site.hours.weekday}<br />
+              {site.hours.weekend}
+            </div>
+          </div>
+        </div>
+        <div class="footer-social-links">
+          <a href={site.social.facebook} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <img src="/images/Facebook_Logo_Primary.png" alt="Facebook" width="24" height="24" />
+          </a>
+          <a href={site.social.yelp} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Yelp">
+            <img src="/images/yelp_favicon.png" alt="Yelp" width="24" height="24" />
+          </a>
+          <a href={site.social.instagram} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src="/images/Instagram_Glyph_Gradient.png" alt="Instagram" width="24" height="24" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {currentYear} {site.name}. All rights reserved. | CA License {site.license}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--navy);
+    border-top: 1px solid var(--white-10);
+  }
+
+  .footer-content {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-logo-styled {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-pacific-styled {
+    font-family: var(--font-script);
+    color: var(--electric);
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  .logo-wt-styled {
+    font-family: var(--font-heading);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .footer-contact h4 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-contact-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .footer-contact-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .footer-contact-item div {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .footer-contact-item a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .footer-contact-item a:hover {
+    color: var(--electric);
+  }
+
+  .footer-social-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .footer-social-links .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--white-10);
+    transition: background var(--transition), transform var(--transition);
+  }
+
+  .footer-social-links .social-link:hover {
+    background: var(--white-30);
+    transform: scale(1.1);
+  }
+
+  .footer-social-links .social-link img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--white-10);
+    text-align: center;
+    padding: 1.25rem 2rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      padding: 3rem 1rem 1.5rem;
+    }
+
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+      padding: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.75rem;
+    }
+  }
+</style>
