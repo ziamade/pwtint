@@ -65,7 +65,13 @@ import afterImg from '../assets/images/img_autotint.JPEG';
 </section>
 
 <script>
+  let ac: AbortController | null = null;
+
   function initBeforeAfter() {
+    ac?.abort();
+    ac = new AbortController();
+    const { signal } = ac;
+
     const container = document.getElementById('ba-container');
     const afterEl = document.getElementById('ba-after');
     const divider = document.getElementById('ba-divider');
@@ -95,32 +101,32 @@ import afterImg from '../assets/images/img_autotint.JPEG';
       isDragging = true;
       document.body.style.userSelect = 'none';
       document.body.style.cursor = 'col-resize';
-    });
+    }, { signal });
 
     document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       updatePosition(e.clientX);
-    });
+    }, { signal });
 
-    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('mouseup', stopDrag, { signal });
 
-    // Touch events
+    // Touch events — touch-action: none on .ba-divider handles scroll prevention
     divider.addEventListener('touchstart', () => {
       isDragging = true;
-    }, { passive: true });
+    }, { passive: true, signal });
 
     document.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
       updatePosition(e.touches[0].clientX);
-    }, { passive: true });
+    }, { passive: true, signal });
 
-    document.addEventListener('touchend', stopDrag);
+    document.addEventListener('touchend', stopDrag, { signal });
 
     // Click anywhere on container to jump
     container.addEventListener('click', (e) => {
       if (isDragging) return;
       updatePosition(e.clientX);
-    });
+    }, { signal });
 
     // Keyboard support
     divider.addEventListener('keydown', (e) => {
@@ -138,7 +144,7 @@ import afterImg from '../assets/images/img_autotint.JPEG';
       afterEl!.style.clipPath = `inset(0 0 0 ${newPct}%)`;
       divider.style.left = `${newPct}%`;
       divider.setAttribute('aria-valuenow', String(Math.round(newPct)));
-    });
+    }, { signal });
   }
 
   initBeforeAfter();
