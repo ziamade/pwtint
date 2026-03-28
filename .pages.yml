@@ -106,7 +106,8 @@ content:
       - name: days
         label: Business Hours
         type: object
-        list: true
+        list:
+          collapsible: false
         fields:
           - name: day
             label: Day
@@ -143,7 +144,8 @@ content:
       - name: items
         label: Questions
         type: object
-        list: true
+        list:
+          collapsible: false
         fields:
           - { name: question, label: Question, type: string }
           - { name: answer, label: Answer, type: text }
@@ -158,7 +160,8 @@ content:
       - name: images
         label: Photos
         type: object
-        list: true
+        list:
+          collapsible: false
         fields:
           - { name: url, label: Image, type: image }
           - { name: alt, label: Description, type: string }
@@ -173,7 +176,8 @@ content:
       - name: items
         label: Stats
         type: object
-        list: true
+        list:
+          collapsible: false
         fields:
           - { name: number, label: "Number/Value", type: string }
           - { name: label, label: Label, type: string }
