@@ -20,7 +20,7 @@ body {
   overflow-x: hidden;
 }
 
-img, picture, video, canvas, svg { display: block; max-width: 100%; overflow: clip !important; }
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; overflow: clip !important; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; border: none; background: none; }
 ul, ol { list-style: none; }
