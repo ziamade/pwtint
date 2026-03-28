@@ -8,11 +8,11 @@ import afterImg from '../assets/images/img_autotint.JPEG';
   <div class="ba-header container">
     <span class="section-label">The Transformation</span>
     <h2 class="section-title">See the Difference</h2>
-    <p class="section-subtitle">Scroll to reveal the tint. This is what professional installation looks like.</p>
+    <p class="section-subtitle">Drag the slider to reveal the tint.</p>
   </div>
 
   <div class="ba-viewport">
-    <div class="ba-container">
+    <div class="ba-container" id="ba-container">
       <Image
         src={beforeImg}
         alt="Vehicle before window tinting"
@@ -21,16 +21,27 @@ import afterImg from '../assets/images/img_autotint.JPEG';
         sizes="100vw"
         format="webp"
       />
-      <Image
-        src={afterImg}
-        alt="Vehicle after professional window tinting"
-        class="ba-after"
-        widths={[640, 960, 1280, 1920]}
-        sizes="100vw"
-        format="webp"
-      />
+      <div class="ba-after" id="ba-after">
+        <Image
+          src={afterImg}
+          alt="Vehicle after professional window tinting"
+          class="ba-after-img"
+          widths={[640, 960, 1280, 1920]}
+          sizes="100vw"
+          format="webp"
+        />
+      </div>
 
-      <div class="ba-divider">
+      <div
+        class="ba-divider"
+        id="ba-divider"
+        role="slider"
+        tabindex="0"
+        aria-label="Before and after comparison slider"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="50"
+      >
         <div class="ba-divider-line"></div>
         <div class="ba-divider-handle">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -47,11 +58,98 @@ import afterImg from '../assets/images/img_autotint.JPEG';
     </div>
 
     <div class="ba-hint" aria-hidden="true">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      Keep scrolling
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Drag to compare
     </div>
   </div>
 </section>
+
+<script>
+  let ac: AbortController | null = null;
+
+  function initBeforeAfter() {
+    ac?.abort();
+    ac = new AbortController();
+    const { signal } = ac;
+
+    const container = document.getElementById('ba-container');
+    const afterEl = document.getElementById('ba-after');
+    const divider = document.getElementById('ba-divider');
+    if (!container || !afterEl || !divider) return;
+
+    let isDragging = false;
+
+    function updatePosition(clientX: number) {
+      const rect = container!.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+
+      afterEl!.style.clipPath = `inset(0 0 0 ${pct}%)`;
+      divider!.style.left = `${pct}%`;
+      divider!.setAttribute('aria-valuenow', String(Math.round(pct)));
+    }
+
+    function stopDrag() {
+      isDragging = false;
+      document.body.style.userSelect = '';
+      document.body.style.cursor = '';
+    }
+
+    // Mouse events
+    divider.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      isDragging = true;
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor = 'col-resize';
+    }, { signal });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      updatePosition(e.clientX);
+    }, { signal });
+
+    document.addEventListener('mouseup', stopDrag, { signal });
+
+    // Touch events — touch-action: none on .ba-divider handles scroll prevention
+    divider.addEventListener('touchstart', () => {
+      isDragging = true;
+    }, { passive: true, signal });
+
+    document.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      updatePosition(e.touches[0].clientX);
+    }, { passive: true, signal });
+
+    document.addEventListener('touchend', stopDrag, { signal });
+
+    // Click anywhere on container to jump
+    container.addEventListener('click', (e) => {
+      if (isDragging) return;
+      updatePosition(e.clientX);
+    }, { signal });
+
+    // Keyboard support
+    divider.addEventListener('keydown', (e) => {
+      const currentPct = parseFloat(divider.getAttribute('aria-valuenow') || '50');
+      let newPct = currentPct;
+
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') newPct -= 2;
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') newPct += 2;
+      else if (e.key === 'Home') newPct = 0;
+      else if (e.key === 'End') newPct = 100;
+      else return;
+
+      e.preventDefault();
+      newPct = Math.max(0, Math.min(100, newPct));
+      afterEl!.style.clipPath = `inset(0 0 0 ${newPct}%)`;
+      divider.style.left = `${newPct}%`;
+      divider.setAttribute('aria-valuenow', String(Math.round(newPct)));
+    }, { signal });
+  }
+
+  initBeforeAfter();
+  document.addEventListener('astro:after-swap', initBeforeAfter);
+</script>
 
 <style>
   .ba-section {
@@ -65,8 +163,8 @@ import afterImg from '../assets/images/img_autotint.JPEG';
 
   .ba-viewport {
     position: relative;
-    height: 100vh;
-    height: 100dvh;
+    height: 80vh;
+    height: 80dvh;
     overflow: hidden;
   }
 
@@ -74,10 +172,10 @@ import afterImg from '../assets/images/img_autotint.JPEG';
     position: relative;
     width: 100%;
     height: 100%;
+    cursor: col-resize;
   }
 
-  .ba-before,
-  .ba-after {
+  .ba-before {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -86,20 +184,33 @@ import afterImg from '../assets/images/img_autotint.JPEG';
   }
 
   .ba-after {
-    clip-path: inset(0 100% 0 0);
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: inset(0 0 0 50%);
+  }
+
+  .ba-after-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .ba-divider {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 0%;
+    left: 50%;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
+    cursor: col-resize;
+    touch-action: none;
   }
 
   .ba-divider-line {
@@ -123,6 +234,17 @@ import afterImg from '../assets/images/img_autotint.JPEG';
     border-radius: 50%;
     justify-content: center;
     box-shadow: 0 0 20px var(--color-accent-glow);
+    transition: transform 0.2s ease;
+  }
+
+  .ba-divider:hover .ba-divider-handle,
+  .ba-divider:focus-visible .ba-divider-handle {
+    transform: scale(1.15);
+  }
+
+  .ba-divider:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
   }
 
   .ba-label {
@@ -168,18 +290,19 @@ import afterImg from '../assets/images/img_autotint.JPEG';
     z-index: 5;
     animation: fadeIn 1s ease 1s forwards;
     opacity: 0;
+    pointer-events: none;
   }
 
   .ba-hint svg {
-    animation: scrollPulse 2s ease-in-out infinite;
+    animation: swipeHint 2s ease-in-out infinite;
   }
 
   @keyframes fadeIn {
     to { opacity: 1; }
   }
 
-  @keyframes scrollPulse {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(4px); }
+  @keyframes swipeHint {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
   }
 </style>

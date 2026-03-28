@@ -123,42 +123,7 @@ import Footer from '../components/Footer.astro';
       });
     }
 
-    // Before/After: scroll-scrubbed reveal
-    const baViewport = document.querySelector('.ba-viewport');
-    const baAfter = document.querySelector('.ba-after');
-    const baDivider = document.querySelector('.ba-divider');
-
-    if (baViewport && baAfter && baDivider) {
-      const baTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: baViewport,
-          start: 'top top',
-          end: '+=200%',
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-        },
-      });
-
-      baTl.fromTo(baAfter,
-        { clipPath: 'inset(0 100% 0 0)' },
-        { clipPath: 'inset(0 0% 0 0)', ease: 'none', duration: 1 },
-        0
-      );
-
-      baTl.fromTo(baDivider,
-        { left: '0%' },
-        { left: '100%', ease: 'none', duration: 1 },
-        0
-      );
-
-      const beforeLabel = document.querySelector('.ba-label--before');
-      const afterLabel = document.querySelector('.ba-label--after');
-      if (beforeLabel && afterLabel) {
-        baTl.to(beforeLabel, { opacity: 0, duration: 0.3 }, 0.6);
-        baTl.fromTo(afterLabel, { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.4);
-      }
-    }
+    // Before/After is now a self-contained drag slider (no GSAP needed)
 
     // Gallery: staggered entrance
     gsap.from('.gallery__item', {
