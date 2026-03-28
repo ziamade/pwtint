@@ -107,99 +107,31 @@ content:
         label: Business Hours
         type: object
         list:
+          min: 7
+          max: 7
           collapsible:
             summary: "{{day}}: {{open}} - {{close}}"
         fields:
           - name: day
             label: Day
             type: string
-            description: "Day of the week. Example: Monday"
+            readonly: true
           - name: open
-            label: Opening Time
+            label: Opens
             type: string
             required: false
             description: "Opening time, or leave blank if closed. Example: 9:00 AM"
           - name: close
-            label: Closing Time
+            label: Closes
             type: string
             required: false
             description: "Closing time, or leave blank if closed. Example: 6:00 PM"
+          - name: allDay
+            label: 24 Hours
+            type: boolean
+            default: false
 
   # ── Brand Colors ───────────────────────────────────────────────────────────
-  - name: brand
-    label: Brand Colors
-    type: file
-    path: src/data/brand.json
-    format: json
-    fields:
-      - name: light
-        label: Light Mode
-        type: object
-        fields:
-          - { name: primary, label: Primary, type: string }
-          - { name: background, label: Background, type: string }
-          - { name: surface, label: Surface, type: string }
-          - { name: text, label: Text, type: string }
-          - { name: textMuted, label: Muted Text, type: string }
-          - { name: accent, label: Accent, type: string }
-          - { name: border, label: Border, type: string }
-      - name: dark
-        label: Dark Mode
-        type: object
-        fields:
-          - { name: primary, label: Primary, type: string }
-          - { name: background, label: Background, type: string }
-          - { name: surface, label: Surface, type: string }
-          - { name: text, label: Text, type: string }
-          - { name: textMuted, label: Muted Text, type: string }
-          - { name: accent, label: Accent, type: string }
-          - { name: border, label: Border, type: string }
-      - { name: nameFont, label: Name Font, type: string }
-      - { name: headingFont, label: Heading Font, type: string }
-      - { name: bodyFont, label: Body Font, type: string }
-
-  # ── Hero ───────────────────────────────────────────────────────────────────
-  - name: hero
-    label: Hero Section
-    type: file
-    path: src/data/hero.json
-    format: json
-    fields:
-      - name: heroImage
-        label: Hero Image
-        type: image
-        description: "Main hero image displayed on the homepage."
-      - name: heroTagline
-        label: Tagline
-        type: string
-        description: "Short tagline displayed above the main heading."
-      - name: heroSubtitle
-        label: Subtitle
-        type: string
-        description: "Descriptive text below the main heading."
-
-  # ── Testimonials ──────────────────────────────────────────────────────────
-  - name: testimonials
-    label: Customer Reviews
-    type: file
-    path: src/data/testimonials.json
-    format: json
-    fields:
-      - name: items
-        label: Reviews
-        type: object
-        list:
-          collapsible:
-            summary: "{{author}} ({{rating}} stars)"
-        fields:
-          - { name: text, label: Review Text, type: text }
-          - { name: author, label: Author Name, type: string }
-          - { name: initials, label: Initials, type: string, description: "Two letters shown in avatar circle" }
-          - { name: role, label: Role, type: string, default: "Verified Customer" }
-          - { name: rating, label: Rating, type: number, default: 5 }
-          - { name: source, label: Source, type: string, default: "Google" }
-          - { name: url, label: Review URL, type: string, required: false }
-
   # -- About Section
   - name: about
     label: About Section
