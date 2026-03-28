@@ -10,4 +10,12 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
     },
   },
+  vite: {
+    build: {
+      cssCodeSplit: false,
+    },
+  },
+  build: {
+    inlineStylesheets: 'always',
+  },
 });

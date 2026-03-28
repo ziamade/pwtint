@@ -32,7 +32,7 @@ ul, ol { list-style: none; }
   --color-bg-glass: rgba(255, 255, 255, 0.03);
   --color-text: #F0F0F0;
   --color-text-muted: #888888;
-  --color-text-dim: #555555;
+  --color-text-dim: #8a8a8a;
   --color-accent: #00D9FF;
   --color-accent-hover: #33E1FF;
   --color-accent-dim: rgba(0, 217, 255, 0.12);
