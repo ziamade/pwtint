@@ -1,34 +1,64 @@
 media:
-  input: src/assets/images
-  output: src/assets/images
+  - name: gallery
+    label: Gallery Photos
+    input: src/assets/images
+    output: src/assets/images
+
+  - name: public-images
+    label: Logos & Icons
+    input: public/images
+    output: public/images
+
+  - name: videos
+    label: Videos
+    input: public/videos
+    output: public/videos
 
 content:
   - name: site
     label: Site Settings
     path: src/data/site.ts
     type: code
-    description: Business info, hours, contact details
+    description: Business name, phone, email, address, hours, social links, owner, rating
+
+  - name: site-json
+    label: Site Data (Header & Stats)
+    path: src/data/site.json
+    type: code
+    description: Business info used by header and stats sections (name, tagline, phone, address, hours, license, social links)
 
   - name: services
     label: Services
     path: src/data/services.ts
     type: code
-    description: Service cards with names, descriptions, and image references
+    description: Service cards (automotive, residential, commercial, mobile, specialty, removal)
 
   - name: reviews
     label: Reviews
     path: src/data/reviews.ts
     type: code
-    description: Customer reviews displayed on the site
+    description: Customer reviews with author, rating, and source
 
   - name: faq
     label: FAQ
     path: src/components/FAQ.astro
     type: code
-    description: Frequently asked questions section
+    description: Frequently asked questions (inline data in component frontmatter)
 
-  - name: images
-    label: Images
-    path: src/assets/images
-    type: media
-    description: All site images
+  - name: hero
+    label: Hero Section
+    path: src/components/Hero.astro
+    type: code
+    description: Hero headline, subtitle, video background, CTA buttons
+
+  - name: about
+    label: About Section
+    path: src/components/About.astro
+    type: code
+    description: About Pacific Window Tint section
+
+  - name: footer
+    label: Footer
+    path: src/components/Footer.astro
+    type: code
+    description: Footer with contact info, hours, social links
