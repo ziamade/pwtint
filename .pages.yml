@@ -106,11 +106,7 @@ content:
       - name: days
         label: Business Hours
         type: object
-        list:
-          min: 7
-          max: 7
-          collapsible:
-            summary: "{{day}}: {{open}} - {{close}}"
+        list: true
         fields:
           - name: day
             label: Day
@@ -120,18 +116,11 @@ content:
             label: Opens
             type: string
             required: false
-            description: "Opening time, or leave blank if closed. Example: 9:00 AM"
           - name: close
             label: Closes
             type: string
             required: false
-            description: "Closing time, or leave blank if closed. Example: 6:00 PM"
-          - name: allDay
-            label: 24 Hours
-            type: boolean
-            default: false
 
-  # ── Brand Colors ───────────────────────────────────────────────────────────
   # -- About Section
   - name: about
     label: About Section
