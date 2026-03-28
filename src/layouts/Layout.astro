@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import { ClientRouter } from 'astro:transitions';
 import { site } from '../data/site';
 
 interface Props {
@@ -38,7 +37,6 @@ const ogImage = new URL('/og-image.jpg', Astro.site);
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <ClientRouter />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "AutoRepair",
@@ -96,7 +94,7 @@ const ogImage = new URL('/og-image.jpg', Astro.site);
       .zm-top{all:initial!important;display:block!important;position:sticky!important;top:0!important;z-index:99999!important;background:#1a1a1a!important;border-bottom:1px solid rgba(255,255,255,0.06)!important;padding:7px 16px!important;font-family:-apple-system,system-ui,sans-serif!important;font-size:11px!important;color:#777!important;text-align:center!important;line-height:1.4!important;box-sizing:border-box!important}
       .zm-top__icon{all:initial!important;color:#666!important;margin-right:6px!important;font-size:11px!important}
       .zm-bottom{all:initial!important;display:flex!important;align-items:center!important;gap:14px!important;flex-wrap:wrap!important;position:sticky!important;bottom:0!important;z-index:99999!important;background:rgba(0,0,0,0.92)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;border-top:1px solid rgba(255,255,255,0.1)!important;padding:10px 20px!important;font-family:-apple-system,system-ui,sans-serif!important;box-sizing:border-box!important}
-      .zm-bottom__logo{all:initial!important;display:block!important;width:auto!important;height:22px!important;flex-shrink:0!important;object-fit:contain!important}
+      .zm-bottom__logo{all:initial!important;display:block!important;width:auto!important;height:22px!important;flex-shrink:0!important;object-fit:contain!important;overflow:clip!important}
       .zm-bottom__text{all:initial!important;display:block!important;flex:1!important;min-width:140px!important}
       .zm-bottom__title{all:initial!important;display:block!important;font-size:13px!important;color:#fff!important;font-weight:600!important}
       .zm-bottom__sub{all:initial!important;display:block!important;font-size:11px!important;color:#999!important}
