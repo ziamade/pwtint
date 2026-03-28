@@ -105,7 +105,10 @@ content:
     fields:
       - name: days
         label: Business Hours
-        type: list
+        type: object
+        list:
+          collapsible:
+            summary: "{{day}}: {{open}} - {{close}}"
         fields:
           - name: day
             label: Day
@@ -129,20 +132,31 @@ content:
     path: src/data/brand.json
     format: json
     fields:
-      - { name: primary, label: Primary Color, type: string, description: "Main CTA color — buttons, links, active states. Hex value e.g. #ec5b13" }
-      - { name: primaryLight, label: Primary Light, type: string, description: "Hover state for primary. e.g. #f47a3e" }
-      - { name: secondary, label: Secondary Color, type: string, description: "Secondary accent — icons, nav button. e.g. #7a8d81" }
-      - { name: secondaryLight, label: Secondary Light, type: string, description: "Hover state for secondary. e.g. #95a89d" }
-      - { name: accent, label: Accent Color, type: string, description: "Subtle highlights and labels. e.g. #d9b382" }
-      - { name: headerColor, label: Heading Color, type: string, description: "Color for all headings. e.g. #221610" }
-      - { name: bodyTextColor, label: Body Text Color, type: string, description: "Main body text. e.g. #3a3a3a" }
-      - { name: bodyTextColorWhite, label: Light Text Color, type: string, description: "Text on dark backgrounds. e.g. #f8f6f6" }
-      - { name: offWhite, label: Off White Background, type: string, description: "Light section backgrounds. e.g. #f8f6f6" }
-      - { name: cream, label: Cream Background, type: string, description: "Warm neutral backgrounds. e.g. #f0eae0" }
-      - { name: dark, label: Dark Background, type: string, description: "Dark sections and dark mode bg. e.g. #221610" }
-      - { name: medium, label: Dark Surface, type: string, description: "Dark mode card surfaces. e.g. #2c1a10" }
-      - { name: accentDark, label: Dark Accent Surface, type: string, description: "Dark mode accent cards. e.g. #3a2a1e" }
-      - { name: silver, label: Muted / Silver, type: string, description: "Muted text and dividers. e.g. #a89f95" }
+      - name: light
+        label: Light Mode
+        type: object
+        fields:
+          - { name: primary, label: Primary, type: string }
+          - { name: background, label: Background, type: string }
+          - { name: surface, label: Surface, type: string }
+          - { name: text, label: Text, type: string }
+          - { name: textMuted, label: Muted Text, type: string }
+          - { name: accent, label: Accent, type: string }
+          - { name: border, label: Border, type: string }
+      - name: dark
+        label: Dark Mode
+        type: object
+        fields:
+          - { name: primary, label: Primary, type: string }
+          - { name: background, label: Background, type: string }
+          - { name: surface, label: Surface, type: string }
+          - { name: text, label: Text, type: string }
+          - { name: textMuted, label: Muted Text, type: string }
+          - { name: accent, label: Accent, type: string }
+          - { name: border, label: Border, type: string }
+      - { name: nameFont, label: Name Font, type: string }
+      - { name: headingFont, label: Heading Font, type: string }
+      - { name: bodyFont, label: Body Font, type: string }
 
   # ── Hero ───────────────────────────────────────────────────────────────────
   - name: hero
@@ -173,7 +187,10 @@ content:
     fields:
       - name: items
         label: Reviews
-        type: list
+        type: object
+        list:
+          collapsible:
+            summary: "{{author}} ({{rating}} stars)"
         fields:
           - { name: text, label: Review Text, type: text }
           - { name: author, label: Author Name, type: string }
@@ -182,6 +199,52 @@ content:
           - { name: rating, label: Rating, type: number, default: 5 }
           - { name: source, label: Source, type: string, default: "Google" }
           - { name: url, label: Review URL, type: string, required: false }
+
+  # -- About Section
+  - name: about
+    label: About Section
+    type: file
+    path: src/data/about.json
+    format: json
+    fields:
+      - { name: heading, label: Section Heading, type: string }
+      - name: text
+        label: About Text
+        type: text
+
+  # -- FAQ
+  - name: faq
+    label: FAQ
+    type: file
+    path: src/data/faq.json
+    format: json
+    fields:
+      - name: items
+        label: Questions
+        type: object
+        list:
+          collapsible:
+            summary: "{{question}}"
+        fields:
+          - { name: question, label: Question, type: string }
+          - { name: answer, label: Answer, type: text }
+
+  # -- Photo Gallery
+  - name: gallery
+    label: Photo Gallery
+    type: file
+    path: src/data/gallery.json
+    format: json
+    fields:
+      - name: images
+        label: Photos
+        type: object
+        list:
+          collapsible:
+            summary: "{{alt}}"
+        fields:
+          - { name: url, label: Image, type: image }
+          - { name: alt, label: Description, type: string }
 
   # ── Trust Bar ─────────────────────────────────────────────────────────────
   - name: trustbar
@@ -192,7 +255,10 @@ content:
     fields:
       - name: items
         label: Stats
-        type: list
+        type: object
+        list:
+          collapsible:
+            summary: "{{number}} - {{label}}"
         fields:
           - { name: number, label: "Number/Value", type: string }
           - { name: label, label: Label, type: string }
