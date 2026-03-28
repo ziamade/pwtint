@@ -1,0 +1,34 @@
+media:
+  input: src/assets/images
+  output: src/assets/images
+
+content:
+  - name: site
+    label: Site Settings
+    path: src/data/site.ts
+    type: code
+    description: Business info, hours, contact details
+
+  - name: services
+    label: Services
+    path: src/data/services.ts
+    type: code
+    description: Service cards with names, descriptions, and image references
+
+  - name: reviews
+    label: Reviews
+    path: src/data/reviews.ts
+    type: code
+    description: Customer reviews displayed on the site
+
+  - name: faq
+    label: FAQ
+    path: src/components/FAQ.astro
+    type: code
+    description: Frequently asked questions section
+
+  - name: images
+    label: Images
+    path: src/assets/images
+    type: media
+    description: All site images

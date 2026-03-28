@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-import site from '../data/site.json';
+import { ClientRouter } from 'astro:transitions';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
@@ -8,169 +9,102 @@ interface Props {
 }
 
 const {
-  title = `${site.name} - Expert Tinting in Stockton & Surrounding Areas Since ${site.founded}`,
-  description = `${site.name} - Professional automotive, residential, and commercial window tinting in ${site.address.city}, ${site.address.state} since ${site.founded}. Licensed, insured, lifetime warranty. Expert installation, UV protection, heat reduction.`
+  title = `${site.name} | ${site.city}, ${site.state}`,
+  description = `Professional mobile window tinting in ${site.city}, ${site.state} since ${site.foundingYear}. Automotive, residential, and commercial tinting. We come to you. Call ${site.phone}.`,
 } = Astro.props;
+
+const ogImage = new URL('/og-image.jpg', Astro.site);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO Meta -->
-  <meta name="description" content={description} />
-  <meta name="keywords" content="window tinting, Stockton CA, automotive tint, residential tinting, commercial tinting, car window tint, home window tinting, UV protection, heat reduction, Pacific Window Tint" />
-  <meta name="author" content={site.name} />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Geo Tags -->
-  <meta name="geo.region" content="US-CA" />
-  <meta name="geo.placename" content={site.address.city} />
-  <meta name="geo.position" content={`${site.geo.lat};${site.geo.lng}`} />
-  <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={`${site.name} - Expert Tinting in ${site.address.city} & Surrounding Areas`} />
-  <meta property="og:description" content={`Professional window tinting services since ${site.founded}. Automotive, residential, and commercial tinting. Licensed & insured with lifetime warranty.`} />
-  <meta property="og:url" content="https://pacificwindowtint.com" />
-  <meta property="og:image" content="https://pacificwindowtint.com/images/pwt_logo.png" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content={site.name} />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={`${site.name} - Expert Tinting in ${site.address.city}, ${site.address.state}`} />
-  <meta name="twitter:description" content={`Professional window tinting services since ${site.founded}. Automotive, residential, and commercial tinting. Licensed & insured with lifetime warranty.`} />
-  <meta name="twitter:image" content="https://pacificwindowtint.com/images/pwt_logo.png" />
-
-  <link rel="canonical" href="https://pacificwindowtint.com" />
-  <title>{title}</title>
-  <link rel="icon" type="image/png" href="/images/pwt_logo.png" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
-
-  <!-- Structured Data: LocalBusiness -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://pacificwindowtint.com",
-    "name": site.name,
-    "image": "https://pacificwindowtint.com/images/pwt_logo.png",
-    "description": `Professional automotive, residential, and commercial window tinting services in ${site.address.city}, ${site.address.state}. Family owned since ${site.founded} with lifetime warranty.`,
-    "url": "https://pacificwindowtint.com",
-    "telephone": `+1-${site.phoneTel}`,
-    "email": site.email,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": site.address.street,
-      "addressLocality": site.address.city,
-      "addressRegion": site.address.state,
-      "postalCode": site.address.zip,
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": site.geo.lat,
-      "longitude": site.geo.lng
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens": "09:00",
-        "closes": "18:00"
-      }
-    ],
-    "priceRange": "$$",
-    "foundingDate": site.founded,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.5",
-      "ratingCount": "28",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
-  })} />
-
-  <!-- Structured Data: FAQ -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What types of window tinting services do you offer?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We offer automotive window tinting for cars, trucks, and SUVs, residential window tinting for homes, commercial window tinting for offices and storefronts, specialty vehicle tinting for RVs, boats, and tractors, professional tint removal, and mobile on-site installation services."
-        }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={Astro.url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="canonical" href={Astro.url} />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <ClientRouter />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "AutoRepair",
+      "name": site.name,
+      "telephone": site.phone,
+      "email": site.email,
+      "url": site.domain,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": site.address,
+        "addressLocality": site.city,
+        "addressRegion": site.state,
+        "postalCode": site.zip,
+        "addressCountry": "US"
       },
-      {
-        "@type": "Question",
-        "name": "How long has Pacific Window Tint been in business?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `${site.name} has been serving ${site.address.city}, ${site.address.state} and surrounding areas since ${site.founded}. We are a family-owned business with professional experience in window tinting.`
-        }
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": site.rating,
+        "reviewCount": site.reviewCount,
+        "bestRating": 5
       },
-      {
-        "@type": "Question",
-        "name": "Do you offer a warranty on window tinting?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We offer a lifetime warranty on select premium film installations. Standard installations come with a manufacturer's warranty. We are also licensed and insured for your peace of mind."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where is Pacific Window Tint located?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `We are located at ${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}. We serve ${site.address.city} and all surrounding communities in the Central Valley.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does window tinting take?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Most automotive installations take 1 to 2 hours depending on the vehicle. Residential and commercial jobs vary based on the number and size of windows."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can you remove old window tint?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We use a professional heat and steam method to remove old, damaged, or bubbling tint cleanly without damaging your glass or defroster lines."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you offer mobile tinting service?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We provide on-site tinting for fleet vehicles, dealerships, and customers who need work done at their location."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What areas do you serve?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `We're based in ${site.address.city}, ${site.address.state} and serve the entire San Joaquin County area including Lodi, Manteca, Tracy, Modesto, and surrounding communities.`
-        }
-      }
-    ]
-  })} />
-</head>
-<body>
-  <slot />
-</body>
+      "openingHoursSpecification": site.hours
+        .filter(h => h.open)
+        .map(h => ({
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": h.day,
+          "opens": h.open,
+          "closes": h.close
+        })),
+      "foundingDate": String(site.foundingYear),
+      "priceRange": "$$"
+    })} />
+  </head>
+  <body>
+    <div class="zm-top">
+      <span class="zm-top__icon">&#9432;</span>
+      Preview site built by ZiaMade. Content may not be accurate. Not owned or endorsed by the business.
+    </div>
+
+    <slot />
+
+    <div class="zm-bottom">
+      <div class="zm-bottom__logo">Z</div>
+      <div class="zm-bottom__text">
+        <div class="zm-bottom__title">This could be your live website</div>
+        <div class="zm-bottom__sub">Built by Alex. $29/mo. No contracts.</div>
+      </div>
+      <div class="zm-bottom__buttons">
+        <a href="https://ziamade.com/faq" class="zm-btn zm-btn--ghost">Questions?</a>
+        <a href="https://ziamade.com/get-started" class="zm-btn zm-btn--primary">Make It Live</a>
+      </div>
+    </div>
+
+    <style is:global>
+      .zm-top{all:initial!important;display:block!important;position:sticky!important;top:0!important;z-index:99999!important;background:#1a1a1a!important;border-bottom:1px solid rgba(255,255,255,0.06)!important;padding:7px 16px!important;font-family:-apple-system,system-ui,sans-serif!important;font-size:11px!important;color:#777!important;text-align:center!important;line-height:1.4!important;box-sizing:border-box!important}
+      .zm-top__icon{all:initial!important;color:#666!important;margin-right:6px!important;font-size:11px!important}
+      .zm-bottom{all:initial!important;display:flex!important;align-items:center!important;gap:14px!important;flex-wrap:wrap!important;position:sticky!important;bottom:0!important;z-index:99999!important;background:rgba(0,0,0,0.92)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;border-top:1px solid rgba(255,255,255,0.1)!important;padding:10px 20px!important;font-family:-apple-system,system-ui,sans-serif!important;box-sizing:border-box!important}
+      .zm-bottom__logo{all:initial!important;display:flex!important;align-items:center!important;justify-content:center!important;width:26px!important;height:26px!important;background:#e8c547!important;color:#111!important;border-radius:5px!important;font-weight:800!important;font-size:14px!important;flex-shrink:0!important;box-sizing:border-box!important}
+      .zm-bottom__text{all:initial!important;display:block!important;flex:1!important;min-width:140px!important}
+      .zm-bottom__title{all:initial!important;display:block!important;font-size:13px!important;color:#fff!important;font-weight:600!important}
+      .zm-bottom__sub{all:initial!important;display:block!important;font-size:11px!important;color:#999!important}
+      .zm-bottom__buttons{all:initial!important;display:flex!important;gap:8px!important;flex-shrink:0!important}
+      .zm-btn{all:initial!important;display:inline-block!important;padding:8px 16px!important;border-radius:6px!important;font-size:12px!important;text-decoration:none!important;cursor:pointer!important;box-sizing:border-box!important}
+      .zm-btn--ghost{color:#ccc!important;font-weight:500!important;border:1px solid rgba(255,255,255,0.2)!important;background:transparent!important}
+      .zm-btn--primary{color:#111!important;font-weight:700!important;background:#e8c547!important;border:none!important}
+      @media(max-width:640px){.zm-bottom{flex-direction:column!important;padding:10px 14px!important;gap:8px!important}.zm-bottom__buttons{width:100%!important}.zm-btn{flex:1!important;text-align:center!important}}
+    </style>
+  </body>
 </html>

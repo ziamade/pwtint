@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+
+import imgTesla from '../assets/images/IMG_5646.JPEG';
+import imgMustang from '../assets/images/IMG_6391.jpg';
+import imgCivic from '../assets/images/IMG_6112(1).JPEG';
+import imgPorsche from '../assets/images/IMG_6493.jpg';
+import imgYukon from '../assets/images/IMG_6305.jpg';
+import imgSUV from '../assets/images/IMG_6479.jpg';
+import imgLobby from '../assets/images/IMG_6699.JPEG';
+import imgSEMA from '../assets/images/IMG_9184.jpg';
+
+const gallery = [
+  { src: imgCivic, alt: 'Honda Civic Type R with fresh window tint in our shop', span: 'wide' },
+  { src: imgTesla, alt: 'Tesla Model Y with dark window tint', span: '' },
+  { src: imgMustang, alt: 'Classic 1966 Ford Mustang with window tint', span: '' },
+  { src: imgPorsche, alt: 'Porsche Macan with professional window tint', span: '' },
+  { src: imgYukon, alt: 'GMC Yukon with tinted windows', span: '' },
+  { src: imgSUV, alt: 'SUV in our professional tinting bay', span: '' },
+  { src: imgLobby, alt: 'Pacific Window Tint reception and waiting area', span: '' },
+  { src: imgSEMA, alt: 'Owner Dana Ota at the SEMA automotive trade show', span: '' },
+];
+---
+
+<section class="gallery section" id="portfolio">
+  <div class="container">
+    <div class="gallery__header">
+      <span class="section-label">Our Work</span>
+      <h2 class="section-title">Recent Projects</h2>
+      <p class="section-subtitle">
+        From classics to Teslas. Every vehicle gets the same precision.
+      </p>
+    </div>
+
+    <div class="gallery__grid">
+      {gallery.map((item) => (
+        <div class={`gallery__item ${item.span === 'wide' ? 'gallery__item--wide' : ''}`}>
+          <Image
+            src={item.src}
+            alt={item.alt}
+            class="gallery__image"
+            widths={[300, 500, 700]}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            format="webp"
+          />
+          <div class="gallery__overlay">
+            <p class="gallery__caption">{item.alt}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery__header {
+    margin-bottom: clamp(3rem, 6vh, 5rem);
+  }
+
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .gallery__item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+  }
+
+  .gallery__item--wide {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+
+  .gallery__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .gallery__item:hover .gallery__image {
+    transform: scale(1.05);
+  }
+
+  .gallery__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 40%,
+      rgba(10, 10, 10, 0.8) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .gallery__item:hover .gallery__overlay {
+    opacity: 1;
+  }
+
+  .gallery__caption {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery__item--wide {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery__grid {
+      grid-template-columns: none;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
+    }
+    .gallery__grid::-webkit-scrollbar { display: none; }
+    .gallery__item,
+    .gallery__item--wide {
+      flex: 0 0 75vw;
+      max-width: 75vw;
+      grid-column: span 1;
+      aspect-ratio: 4 / 3;
+      scroll-snap-align: start;
+    }
+  }
+</style>

@@ -1,0 +1,130 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="trust" id="trust">
+  <div class="container">
+    <div class="trust__grid">
+      <div class="trust__item">
+        <span class="trust__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </span>
+        <span class="trust__label">CA License</span>
+        <span class="trust__value">{site.license}</span>
+      </div>
+
+      <div class="trust__divider"></div>
+
+      <div class="trust__item">
+        <span class="trust__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </span>
+        <span class="trust__label">Auto Tinting</span>
+        <span class="trust__value">Warranty</span>
+      </div>
+
+      <div class="trust__divider"></div>
+
+      <div class="trust__item">
+        <span class="trust__icon trust__icon--stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="trust__label">{site.reviewCount} Reviews</span>
+        <span class="trust__value">{site.rating} Stars</span>
+      </div>
+
+      <div class="trust__divider"></div>
+
+      <div class="trust__item">
+        <span class="trust__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </span>
+        <span class="trust__label">In Business</span>
+        <span class="trust__value">Since {site.foundingYear}</span>
+      </div>
+
+      <div class="trust__divider"></div>
+
+      <div class="trust__item">
+        <span class="trust__films">{site.films.join(' / ')}</span>
+        <span class="trust__label">Authorized Dealer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust {
+    padding-block: clamp(1.5rem, 3vh, 2.5rem);
+    background: var(--color-bg-elevated);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .trust__grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    flex-wrap: wrap;
+  }
+
+  .trust__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+    min-width: 7rem;
+  }
+
+  .trust__icon {
+    color: var(--color-accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .trust__icon--stars {
+    color: var(--color-star);
+    font-size: var(--text-base);
+    letter-spacing: 0.05em;
+  }
+
+  .trust__label {
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .trust__value {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .trust__films {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: 0.02em;
+  }
+
+  .trust__divider {
+    width: 1px;
+    height: 2.5rem;
+    background: var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .trust__grid {
+      gap: 1.5rem 2rem;
+    }
+
+    .trust__divider {
+      display: none;
+    }
+
+    .trust__item {
+      min-width: 5rem;
+    }
+  }
+</style>

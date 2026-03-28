@@ -1,44 +1,55 @@
 ---
 const faqs = [
   {
-    question: "What types of window tint do you offer?",
-    answer: "We carry a full range of professional-grade films including dyed, metallic, carbon, and ceramic tint. Each type offers different levels of heat rejection, UV protection, and appearance. We'll help you choose the right film for your needs and budget."
+    question: 'How long does window tinting take?',
+    answer: 'Most cars are done in 30 to 40 minutes. Larger vehicles like SUVs or trucks may take up to an hour. Residential and commercial jobs depend on the number of windows.',
   },
   {
-    question: "How long does window tinting take?",
-    answer: "Most automotive installations take 1 to 2 hours depending on the number of windows and vehicle type. Residential and commercial jobs vary based on the number and size of windows. We'll give you a time estimate when you schedule."
+    question: "What are California's window tinting laws?",
+    answer: "California allows any darkness on rear and back side windows. Front side windows must allow more than 70% of light through. The windshield can only have tint on the top 4 inches. We carry California-legal options and can walk you through what's allowed.",
   },
   {
-    question: "Do you offer a warranty?",
-    answer: "We offer a lifetime warranty on select premium installations. Standard installations come with a manufacturer's warranty. The warranty covers bubbling, peeling, cracking, and discoloration. Ask us about warranty options for your specific film choice."
+    question: 'What brands of film do you carry?',
+    answer: "We're an authorized dealer for LLumar, SunTek, and Maxpro. All three are professional-grade films with excellent heat rejection, UV blocking, and clarity. We'll help you pick the right film for your needs and budget.",
   },
   {
-    question: "Can you remove old window tint?",
-    answer: "Yes. We use a professional heat and steam method to remove old, damaged, or bubbling tint cleanly without damaging your glass or defroster lines. We can remove old tint and install new film in the same visit."
+    question: 'Do you offer mobile service?',
+    answer: 'Yes. We can come to your home, office, or dealership lot. Same professional install, same films, same quality. Call us to schedule a mobile appointment.',
   },
   {
-    question: "Do you offer mobile tinting service?",
-    answer: "Yes. We provide on-site tinting for fleet vehicles, dealerships, and customers who need the work done at their location. Contact us for mobile service availability and scheduling."
+    question: 'Can I roll my windows down after tinting?',
+    answer: "Wait at least 3 to 5 days before rolling your windows down. The film needs time to cure and bond to the glass. You may notice small water bubbles during this period. They'll disappear as the film dries.",
   },
   {
-    question: "What areas do you serve?",
-    answer: "We're based in Stockton, CA and serve the entire San Joaquin County area including Lodi, Manteca, Tracy, Modesto, and surrounding communities."
+    question: 'How do I care for my new tint?',
+    answer: 'After the curing period, clean your windows with a soft cloth and ammonia-free cleaner. Avoid abrasive pads or harsh chemicals. The film is durable but treating it right keeps it looking sharp for years.',
   },
   {
-    question: "How do I care for newly tinted windows?",
-    answer: "After installation, keep windows rolled up for 3 to 5 days to allow the film to cure. You may notice small water pockets during curing, which is normal. After curing, clean with a soft cloth and ammonia-free cleaner."
-  }
+    question: 'Do you tint specialty vehicles?',
+    answer: "Yes. We work on RVs, tractors, boats, heavy equipment, and anything else with windows. We've handled John Deere combines, commercial fleet vehicles, and classic cars. If it has glass, we can tint it.",
+  },
+  {
+    question: 'Are you licensed?',
+    answer: "Yes. Pacific Window Tint holds California Contractor License #896816. We've been a licensed, insured business in Stockton since 2007.",
+  },
 ];
 ---
 
-<section class="faq-section" id="faq">
-  <div class="container">
-    <h2 class="section-title">Frequently Asked Questions</h2>
-    <div class="faq-list">
-      {faqs.map((faq) => (
-        <details class="faq-item">
-          <summary class="faq-question">{faq.question}</summary>
-          <div class="faq-answer">
+<section class="faq section" id="faq">
+  <div class="container container--narrow">
+    <div class="faq__header">
+      <span class="section-label">Questions</span>
+      <h2 class="section-title">Frequently Asked</h2>
+    </div>
+
+    <div class="faq__list">
+      {faqs.map((faq, i) => (
+        <details class="faq__item" data-faq={i}>
+          <summary class="faq__question">
+            <span>{faq.question}</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq__answer">
             <p>{faq.answer}</p>
           </div>
         </details>
@@ -48,94 +59,19 @@ const faqs = [
 </section>
 
 <style>
-  .faq-section {
-    padding: var(--section-padding);
-    background: var(--navy-light);
-    position: relative;
+  .faq__header { text-align: center; margin-bottom: clamp(2.5rem, 5vh, 4rem); }
+  .faq__list { display: flex; flex-direction: column; }
+  .faq__item { border-bottom: 1px solid var(--color-border); }
+  .faq__item:first-child { border-top: 1px solid var(--color-border); }
+  .faq__question {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.25rem 0; font-family: var(--font-display); font-size: var(--text-base);
+    font-weight: 600; cursor: pointer; list-style: none; transition: color var(--transition-fast);
   }
-
-  .faq-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--white-10), transparent);
-  }
-
-  .faq-section .container {
-    max-width: 800px;
-  }
-
-  .faq-list {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .faq-item {
-    background: var(--white-05);
-    border: 1px solid var(--white-10);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: border-color var(--transition);
-  }
-
-  .faq-item[open] {
-    border-color: var(--electric);
-  }
-
-  .faq-question {
-    padding: 1.25rem 1.5rem;
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--white);
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .faq-question::-webkit-details-marker {
-    display: none;
-  }
-
-  .faq-question::after {
-    content: '+';
-    font-size: 1.5rem;
-    color: var(--electric);
-    font-weight: 300;
-    flex-shrink: 0;
-    margin-left: 1rem;
-    transition: transform 0.2s ease;
-  }
-
-  .faq-item[open] .faq-question::after {
-    transform: rotate(45deg);
-  }
-
-  .faq-answer {
-    padding: 0 1.5rem 1.25rem;
-  }
-
-  .faq-answer p {
-    font-size: 0.95rem;
-    color: var(--gray);
-    line-height: 1.7;
-  }
-
-  @media (max-width: 768px) {
-    .faq-section {
-      padding: 3rem 1rem;
-    }
-
-    .faq-question {
-      font-size: 0.95rem;
-      padding: 1rem 1.25rem;
-    }
-  }
+  .faq__question::-webkit-details-marker { display: none; }
+  .faq__question:hover { color: var(--color-accent); }
+  .faq__chevron { flex-shrink: 0; color: var(--color-text-dim); transition: transform var(--transition-base); }
+  .faq__item[open] .faq__chevron { transform: rotate(180deg); color: var(--color-accent); }
+  .faq__answer { padding-bottom: 1.25rem; }
+  .faq__answer p { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.7; max-width: 60ch; }
 </style>

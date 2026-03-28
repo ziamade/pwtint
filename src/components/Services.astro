@@ -1,135 +1,94 @@
 ---
-import services from '../data/services.json';
+import { Image } from 'astro:assets';
+import { services } from '../data/services';
+
+// New real photos from the shop
+import imgAuto from '../assets/images/IMG_6112(1).JPEG';
+import imgHouse from '../assets/images/img_housebf.JPEG';
+import imgCommercial from '../assets/images/IMG_5673.JPEG';
+import imgTrailer from '../assets/images/IMG_6617.jpg';
+import imgSpecialty from '../assets/images/IMG_5866.JPEG';
+import imgRemoval from '../assets/images/img_removaltint.JPEG';
+
+const imageMap: Record<string, ImageMetadata> = {
+  img_autotint: imgAuto,
+  img_houseting: imgHouse,
+  img_commercialtint: imgCommercial,
+  img_trailer: imgTrailer,
+  img_specialtytint: imgSpecialty,
+  img_removaltint: imgRemoval,
+};
 ---
 
-<section class="services" id="services">
-  <div class="section-header">
-    <div class="section-label">What We Offer</div>
-    <h2 class="section-title">Advanced Tinting Solutions</h2>
-  </div>
-  <div class="services-grid">
-    {services.map((service) => (
-      <div class="service-card">
-        <img
-          src={service.image}
-          alt={service.alt}
-          class="service-image"
-          loading="lazy"
-          width="400"
-          height="250"
-        />
-        <div class="service-content">
-          <h3>{service.title}</h3>
-          <p>{service.description}</p>
-        </div>
-      </div>
-    ))}
-  </div>
-  <div class="services-cta">
-    <a href="#quote-form" class="btn-primary">Get Your Free Quote Today</a>
+<section class="services section" id="services">
+  <div class="container">
+    <div class="services__header">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">
+        From your daily driver to your storefront. LLumar, SunTek, and Maxpro films.
+      </p>
+    </div>
+    <div class="services__grid">
+      {services.map((service) => (
+        <article class="service-card" data-service={service.id}>
+          <div class="service-card__image-wrap">
+            <Image
+              src={imageMap[service.image]}
+              alt={service.name}
+              class="service-card__image"
+              widths={[300, 450, 600]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              format="webp"
+            />
+            <div class="service-card__image-overlay"></div>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__title">{service.name}</h3>
+            <p class="service-card__desc">{service.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
-  .services {
-    padding: var(--section-padding);
-    background: var(--navy);
-    position: relative;
-  }
-
-  .services::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--white-10), transparent);
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: var(--container-max);
-    margin: 0 auto 3rem;
-  }
-
+  .services__header { margin-bottom: clamp(3rem, 6vh, 5rem); }
+  .services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .service-card {
-    background: var(--white-05);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--white-10);
-    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    cursor: default;
+    position: relative; background: var(--color-bg-card);
+    border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+    overflow: hidden; transition: all var(--transition-base);
   }
-
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    border-color: var(--electric);
+  .service-card:hover { border-color: var(--color-border-accent); transform: translateY(-4px); box-shadow: var(--shadow-card); }
+  .service-card__image-wrap { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+  .service-card__image { width: 100% !important; height: 100% !important; max-height: none !important; object-fit: cover; transition: transform var(--transition-slow); }
+  .service-card:hover .service-card__image { transform: scale(1.05); }
+  .service-card__image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.6) 100%);
   }
-
-  .service-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-
-  .service-card:hover .service-image {
-    transform: scale(1.05);
-  }
-
-  .service-content {
-    padding: 1.5rem;
-  }
-
-  .service-content h3 {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.75rem;
-  }
-
-  .service-content p {
-    font-size: 0.9rem;
-    color: var(--gray);
-    line-height: 1.6;
-  }
-
-  .services-cta {
-    text-align: center;
-  }
-
-  @media (max-width: 900px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .services {
-      padding: 3rem 1rem;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
+  .service-card__body { padding: 1.25rem 1.5rem 1.5rem; }
+  .service-card__title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .service-card__desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+  @media (max-width: 1024px) { .services__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) {
+    .services__grid {
+      grid-template-columns: none;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
       gap: 1rem;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
     }
-
-    .service-image {
-      height: 200px;
-    }
-
-    .service-card:active {
-      background: rgba(42, 42, 42, 0.9);
-    }
-
-    .service-card:active h3,
-    .service-card:active p {
-      color: white;
+    .services__grid::-webkit-scrollbar { display: none; }
+    .service-card {
+      flex: 0 0 80vw;
+      max-width: 80vw;
+      scroll-snap-align: start;
     }
   }
 </style>

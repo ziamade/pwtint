@@ -1,0 +1,151 @@
+---
+import { site } from '../data/site';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Call or Text',
+    description: `Reach us at ${site.phone}. Tell us your vehicle, where you are, and when works for you. Same-day appointments available.`,
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  },
+  {
+    number: '02',
+    title: 'We Show Up',
+    description: 'Our mobile unit pulls up to your location. Home, office, dealership. We bring everything we need.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+  },
+  {
+    number: '03',
+    title: '30 Minutes',
+    description: 'Computer-cut film, precision installation. Most vehicles done in 30 to 40 minutes while you go about your day.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  },
+  {
+    number: '04',
+    title: 'Drive Away',
+    description: 'Lifetime warranty on all automotive film. No bubbles, no peeling, no fading. Guaranteed.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+  },
+];
+---
+
+<section class="how section" id="how-it-works">
+  <div class="container container--narrow">
+    <div class="how__header">
+      <span class="section-label">The Process</span>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Four steps. That's it.</p>
+    </div>
+
+    <div class="how__timeline">
+      <div class="how__timeline-line" aria-hidden="true"></div>
+      {steps.map((step) => (
+        <div class="how__step step">
+          <div class="how__step-marker">
+            <span class="how__step-number">{step.number}</span>
+          </div>
+          <div class="how__step-content">
+            <div class="how__step-icon" set:html={step.icon} />
+            <h3 class="how__step-title">{step.title}</h3>
+            <p class="how__step-desc">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .how__header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 6vh, 5rem);
+  }
+
+  .how__header .section-subtitle {
+    margin-inline: auto;
+  }
+
+  .how__timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .how__timeline-line {
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      var(--color-border-accent) 0%,
+      var(--color-border) 100%
+    );
+  }
+
+  .how__step {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .how__step-marker {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-accent);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .how__step-number {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+  }
+
+  .how__step-content {
+    flex: 1;
+    padding-bottom: 1rem;
+  }
+
+  .how__step-icon {
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+  }
+
+  .how__step-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .how__step-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 40ch;
+  }
+
+  @media (max-width: 640px) {
+    .how__step {
+      gap: 1.25rem;
+    }
+
+    .how__timeline-line {
+      left: 1.5rem;
+    }
+  }
+</style>
