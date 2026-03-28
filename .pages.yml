@@ -143,9 +143,7 @@ content:
       - name: items
         label: Questions
         type: object
-        list:
-          collapsible:
-            summary: "{{question}}"
+        list: true
         fields:
           - { name: question, label: Question, type: string }
           - { name: answer, label: Answer, type: text }
@@ -160,9 +158,7 @@ content:
       - name: images
         label: Photos
         type: object
-        list:
-          collapsible:
-            summary: "{{alt}}"
+        list: true
         fields:
           - { name: url, label: Image, type: image }
           - { name: alt, label: Description, type: string }
@@ -177,9 +173,7 @@ content:
       - name: items
         label: Stats
         type: object
-        list:
-          collapsible:
-            summary: "{{number}} - {{label}}"
+        list: true
         fields:
           - { name: number, label: "Number/Value", type: string }
           - { name: label, label: Label, type: string }
